@@ -14,7 +14,6 @@ import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.generator.ChunkGenerator;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -151,7 +150,7 @@ public class ChunkProviderGenerate extends ChunkGenerator {
                                     if(d17 < 0.5D && yPiece * 8 + l1 >= oceanHeight - 1) {
                                         block = ICE;
                                     } else {
-                                        block = STATIONARY_WATER;
+                                        block = WATER;
                                     }
                                 }
                                 if(d15 > 0.0D) {
@@ -225,7 +224,7 @@ public class ChunkProviderGenerate extends ChunkGenerator {
                             }
                         }
                         if(y < oceanHeight && topBlock == AIR) {
-                            topBlock = STATIONARY_WATER;
+                            topBlock = WATER;
                         }
                         prevDepth = depth;
                         if(y >= oceanHeight - 1) {

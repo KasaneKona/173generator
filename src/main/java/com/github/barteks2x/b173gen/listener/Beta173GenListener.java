@@ -77,7 +77,7 @@ public class Beta173GenListener implements Listener {
         if(event == null || event.getItem() == null) {
             return;
         }
-        if(event.getItem().getType() == Material.EYE_OF_ENDER) {
+        if(event.getItem().getType() == Material.ENDER_EYE) {
             Player player = event.getPlayer();
             World world = player.getLocation().getWorld();
             WorldConfig cfg;
@@ -179,13 +179,6 @@ public class Beta173GenListener implements Listener {
                 return state;
             }
             return world.getBlockAt(x, y, z).getState();
-        }
-
-        @Override public void setType(int x, int y, int z, Material type, MaterialData data) {
-            BlockState state = world.getBlockAt(x, y, z).getState();
-            state.setType(type);
-            state.setData(data);
-            newStates.put(new BlockPos(x, y, z), state);
         }
 
         @Override public int getHighestBlockYAt(int x, int z) {

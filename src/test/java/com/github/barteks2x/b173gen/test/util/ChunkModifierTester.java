@@ -12,9 +12,6 @@ import java.util.regex.Pattern;
 import java.util.zip.DataFormatException;
 
 public class ChunkModifierTester {
-
-    //these are impossible to get right due to differences in the way MC works
-    private static final boolean IGNORE_LIQUID_TYPE_DIFFERENCE = true;
     private final Set<TestResults.Difference> expectedDiff;
 
     private IChunkSource chunksToTest;
@@ -154,20 +151,6 @@ public class ChunkModifierTester {
                     for (int z = 0; z < 16; z++) {
                         Material generatedBlock = generatedChunk.getBlock(x, y, z);
                         Material expectedBlock = data.getBlock(x, y, z);
-                        if (IGNORE_LIQUID_TYPE_DIFFERENCE) {
-                            if (generatedBlock == Material.STATIONARY_WATER) {
-                                generatedBlock = Material.WATER;
-                            }
-                            if (generatedBlock == Material.STATIONARY_LAVA) {
-                                generatedBlock = Material.LAVA;
-                            }
-                            if (expectedBlock == Material.STATIONARY_WATER) {
-                                expectedBlock = Material.WATER;
-                            }
-                            if (expectedBlock == Material.STATIONARY_LAVA) {
-                                expectedBlock = Material.LAVA;
-                            }
-                        }
                         if (generatedBlock != expectedBlock) {
                             results.addDifference(x + data.getX() * 16, y, z + data.getZ() * 16, expectedBlock, generatedBlock);
                         }

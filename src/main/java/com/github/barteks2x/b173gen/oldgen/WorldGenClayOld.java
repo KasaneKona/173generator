@@ -18,8 +18,7 @@ public class WorldGenClayOld implements WorldGenerator173 {
 
     @Override
     public boolean generate(ISimpleWorld world, Random random, int blockX, int blockY, int blockZ) {
-        if(world.getType(blockX - 8, blockY, blockZ - 8) != Material.WATER &&
-                world.getType(blockX - 8, blockY, blockZ - 8) != Material.STATIONARY_WATER) {
+        if(world.getType(blockX - 8, blockY, blockZ - 8) != Material.WATER) {
             return false;
         }
         float f = random.nextFloat() * 3.141593F;

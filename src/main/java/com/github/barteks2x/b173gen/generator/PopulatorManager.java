@@ -48,8 +48,8 @@ public class PopulatorManager {
         //hack, init is the first populator
         add(new PopulatorStateInit(this));
 
-        add("WaterLakes", new RareResource(new WorldGenLakesOld(STATIONARY_WATER), HeightDistrubution.DEFAULT, 4));
-        add("LavaLakes", new RareUndergroundResource(new WorldGenLakesOld(STATIONARY_LAVA), new DepthPackedHeightDistribution(0, 8, 126), 8, 64, 10));
+        add("WaterLakes", new RareResource(new WorldGenLakesOld(WATER), HeightDistrubution.DEFAULT, 4));
+        add("LavaLakes", new RareUndergroundResource(new WorldGenLakesOld(LAVA), new DepthPackedHeightDistribution(0, 8, 126), 8, 64, 10));
         add("Dungeons", new CommonResource(new WorldGenDungeonOld(), HeightDistrubution.DEFAULT, 8));
 
         add("Clay", new CommonResource(new WorldGenClayOld(32), HeightDistrubution.DEFAULT, 10));
@@ -66,11 +66,11 @@ public class PopulatorManager {
 
         add("Trees", new CommonSurfaceResource(BiomeOld::getBiomeTreeGenerator, (rand, biome, x, z) -> biome.getTreesPerChunk(rand, treeNoise, x, z)));
 
-        add("YellowFlowers", new CommonResource(new WorldGenFlowersOld(YELLOW_FLOWER), HeightDistrubution.DEFAULT, (rand, biome, x, z) -> biome.getFlowersPerChunk()));
+        add("YellowFlowers", new CommonResource(new WorldGenFlowersOld(DANDELION), HeightDistrubution.DEFAULT, (rand, biome, x, z) -> biome.getFlowersPerChunk()));
         add("TallGrass", new CommonResource(BiomeOld::getRandomGrassGenerator, HeightDistrubution.DEFAULT, (rand, biome, x, z) -> biome.getGrassPerChunk()));
         add("DeadBush", new CommonResource(new WorldGenDeadBushOld(DEAD_BUSH), HeightDistrubution.DEFAULT, (rand, biome, x, z) -> biome.getDeadBushPerChunk()));
 
-        add("RedFlowers", new RareResource(new WorldGenFlowersOld(RED_ROSE), HeightDistrubution.DEFAULT, 2));
+        add("RedFlowers", new RareResource(new WorldGenFlowersOld(POPPY), HeightDistrubution.DEFAULT, 2));
         add("BrownMushrooms", new RareResource(new WorldGenFlowersOld(BROWN_MUSHROOM), HeightDistrubution.DEFAULT, 4));
         add("RedMushrooms", new RareResource(new WorldGenFlowersOld(RED_MUSHROOM), HeightDistrubution.DEFAULT, 8));
         add("Reed", new CommonResource(new WorldGenReedOld(), HeightDistrubution.DEFAULT, 10));
@@ -78,8 +78,8 @@ public class PopulatorManager {
 
         add("Cacti", new CommonResource(new WorldGenCactusOld(), HeightDistrubution.DEFAULT, (rand, biome, x, z) -> biome.getCactusForBiome()));
 
-        add("RandomWater", new CommonResource(new WorldGenLiquidsOld(STATIONARY_WATER), new DepthPackedHeightDistribution(0, 8, 126), 50));
-        add("RandomLava", new CommonResource(new WorldGenLiquidsOld(STATIONARY_LAVA), (rand) -> rand.nextInt(rand.nextInt(rand.nextInt(112) + 8) + 8), 20));
+        add("RandomWater", new CommonResource(new WorldGenLiquidsOld(WATER), new DepthPackedHeightDistribution(0, 8, 126), 50));
+        add("RandomLava", new CommonResource(new WorldGenLiquidsOld(LAVA), (rand) -> rand.nextInt(rand.nextInt(rand.nextInt(112) + 8) + 8), 20));
 
         add("Snow", new SnowPopulator());
 

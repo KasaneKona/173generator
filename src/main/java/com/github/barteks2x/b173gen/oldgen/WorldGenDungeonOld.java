@@ -6,6 +6,7 @@ import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.block.Chest;
 import org.bukkit.block.CreatureSpawner;
+import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Dye;
@@ -118,10 +119,10 @@ public class WorldGenDungeonOld implements WorldGenerator173 {
             }
         }
 
-        w.setType(xPos, yPos, zPos, Material.MOB_SPAWNER);
+        w.setType(xPos, yPos, zPos, Material.SPAWNER);
         CreatureSpawner tileentitymobspawner = (CreatureSpawner) w.getBlockState(xPos, yPos, zPos);
 
-        tileentitymobspawner.setCreatureTypeByName(this.getRandomMob(random));
+        tileentitymobspawner.setSpawnedType(this.getRandomMob(random));
         return true;
     }
 
@@ -139,7 +140,7 @@ public class WorldGenDungeonOld implements WorldGenerator173 {
             case 3:
                 return new ItemStack(Material.WHEAT, random.nextInt(4) + 1);
             case 4:
-                return new ItemStack(Material.SULPHUR, random.nextInt(4) + 1);
+                return new ItemStack(Material.GUNPOWDER, random.nextInt(4) + 1);
             case 5:
                 return new ItemStack(Material.STRING, random.nextInt(4) + 1);
             case 6:
@@ -159,32 +160,31 @@ public class WorldGenDungeonOld implements WorldGenerator173 {
             case 9:
                 if (random.nextInt(10) == 0) {
                     if(random.nextInt(2) == 0) {
-                        return new ItemStack(Material.GOLD_RECORD);
+                        return new ItemStack(Material.MUSIC_DISC_13);
                     } else {
-                        return new ItemStack(Material.GREEN_RECORD);
+                        return new ItemStack(Material.MUSIC_DISC_CAT);
                     }
                 } else {
                     return null;
                 }
             case 10:
-                return new Dye(DyeColor.BLACK).toItemStack();
+                return new ItemStack(Material.INK_SAC);
             default:
                 throw new AssertionError();
         }
     }
 
-    private String getRandomMob(Random random) {
+    private EntityType getRandomMob(Random random) {
         switch (random.nextInt(4)) {
             case 0:
-                return "Skeleton";
+                return EntityType.SKELETON;
             case 1:
-                return "Zombie";
             case 2:
-                return "Zombie";
+                return EntityType.ZOMBIE;
             case 3:
-                return "Spider";
+                return EntityType.SPIDER;
             default:
-                return "";
+                return null;
         }
     }
 }

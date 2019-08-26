@@ -18,7 +18,10 @@ public class WorldGenDeadBushOld implements WorldGenerator173 {
 
         for(Material l;
                 ((l = world.getType(i, j, k)) == Material.AIR
-                || l == Material.LEAVES) && j > 0; --j) {
+                || l == Material.OAK_LEAVES
+                || l == Material.SPRUCE_LEAVES
+                || l == Material.BIRCH_LEAVES
+                || l == Material.JUNGLE_LEAVES) && j > 0; --j) {
         }
 
         for(int i1 = 0; i1 < 4; ++i1) {

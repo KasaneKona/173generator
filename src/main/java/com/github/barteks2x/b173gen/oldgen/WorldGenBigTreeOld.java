@@ -152,7 +152,11 @@ public class WorldGenBigTreeOld implements WorldGenerator173 {
                     aint1[b2] = aint[b2] + k1;
                     Material l1 = this.c.getType(aint1[0], aint1[1], aint1[2]);
 
-                    if(l1 != Material.AIR && l1 != Material.LEAVES) {
+                    if(l1 != Material.AIR
+                    		&& l1 != Material.OAK_LEAVES
+                            && l1 != Material.SPRUCE_LEAVES
+                            && l1 != Material.BIRCH_LEAVES
+                    		&& l1 != Material.JUNGLE_LEAVES) {
                         ++k1;
                     } else {
                         this.c.setType(aint1[0], aint1[1], aint1[2], l);
@@ -194,7 +198,7 @@ public class WorldGenBigTreeOld implements WorldGenerator173 {
         for(int i1 = j + this.n; l < i1; ++l) {
             float f = this.b(l - j);
 
-            this.a(i, l, k, f, (byte)1, Material.LEAVES);
+            this.a(i, l, k, f, (byte)1, Material.OAK_LEAVES);
         }
     }
 
@@ -260,17 +264,17 @@ public class WorldGenBigTreeOld implements WorldGenerator173 {
         int[] aint = new int[] {i, j, l};
         int[] aint1 = new int[] {i, k, l};
 
-        this.a(aint, aint1, Material.LOG);
+        this.a(aint, aint1, Material.OAK_LOG);
         if(this.l == 2) {
             ++aint[0];
             ++aint1[0];
-            this.a(aint, aint1, Material.LOG);
+            this.a(aint, aint1, Material.OAK_LOG);
             ++aint[2];
             ++aint1[2];
-            this.a(aint, aint1, Material.LOG);
+            this.a(aint, aint1, Material.OAK_LOG);
             aint[0] += -1;
             aint1[0] += -1;
-            this.a(aint, aint1, Material.LOG);
+            this.a(aint, aint1, Material.OAK_LOG);
         }
     }
 
@@ -286,7 +290,7 @@ public class WorldGenBigTreeOld implements WorldGenerator173 {
             int k = aint[1] - this.d[1];
 
             if(this.c(k)) {
-                this.a(aint, aint2, Material.LOG);
+                this.a(aint, aint2, Material.OAK_LOG);
             }
         }
     }
@@ -330,7 +334,11 @@ public class WorldGenBigTreeOld implements WorldGenerator173 {
                 aint3[b3] = MathHelper.floor((double)aint[b3] + (double)i * d1);
                 Material k = this.c.getType(aint3[0], aint3[1], aint3[2]);
 
-                if(k != Material.AIR && k != Material.LEAVES) {
+                if(k != Material.AIR
+                		&& k != Material.OAK_LEAVES
+                		&& k != Material.SPRUCE_LEAVES
+                		&& k != Material.BIRCH_LEAVES
+                		&& k != Material.JUNGLE_LEAVES) {
                     break;
                 }
             }
@@ -344,7 +352,7 @@ public class WorldGenBigTreeOld implements WorldGenerator173 {
         int[] aint1 = new int[] {this.d[0], this.d[1] + this.e - 1, this.d[2]};
         Material i = this.c.getType(this.d[0], this.d[1] - 1, this.d[2]);
 
-        if(i != Material.DIRT && i != Material.GRASS) {
+        if(i != Material.DIRT && i != Material.GRASS_BLOCK) {
             return false;
         } else {
             int j = this.a(aint, aint1);

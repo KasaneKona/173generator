@@ -10,18 +10,19 @@ import java.util.Random;
 public class WorldGenGrassOld implements WorldGenerator173 {
 
     private final Material block;
-    private final MaterialData data;
 
-    public WorldGenGrassOld(Material i, MaterialData j) {
+    public WorldGenGrassOld(Material i) {
         this.block = i;
-        this.data = j;
     }
 
     public boolean generate(ISimpleWorld world, Random random, int i, int j, int k) {
         Material l;
 
         for(; ((l = world.getType(i, j, k)) == Material.AIR
-                || l == Material.LEAVES) && j > 0; --j) {
+                || l == Material.OAK_LEAVES
+                || l == Material.SPRUCE_LEAVES
+                || l == Material.BIRCH_LEAVES
+                || l == Material.JUNGLE_LEAVES) && j > 0; --j) {
         }
 
         for(int i1 = 0; i1 < 128; ++i1) {
@@ -31,7 +32,7 @@ public class WorldGenGrassOld implements WorldGenerator173 {
 
             if(world.isEmpty(j1, k1, l1)
                     && MinecraftMethods.Block_canPlace(this.block, world, j1, k1, l1)) {
-                world.setType(j1, k1, l1, this.block, this.data);
+                world.setType(j1, k1, l1, this.block);
             }
         }
 

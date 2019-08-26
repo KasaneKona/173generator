@@ -35,13 +35,13 @@ public class WorldGenCactusOld implements WorldGenerator173 {
     }
 
     protected boolean canPlaceCactusAt(ISimpleWorld world, int i, int j, int k) {
-        if(MinecraftMethods.Material_isBuildable(world, i - 1, j, k)) {//TODO: isSolid --> isBuildable
+        if(MinecraftMethods.Material_isSolid(world, i - 1, j, k)) {
             return false;
-        } else if(MinecraftMethods.Material_isBuildable(world, i + 1, j, k)) {
+        } else if(MinecraftMethods.Material_isSolid(world, i + 1, j, k)) {
             return false;
-        } else if(MinecraftMethods.Material_isBuildable(world, i, j, k - 1)) {
+        } else if(MinecraftMethods.Material_isSolid(world, i, j, k - 1)) {
             return false;
-        } else if(MinecraftMethods.Material_isBuildable(world, i, j, k + 1)) {
+        } else if(MinecraftMethods.Material_isSolid(world, i, j, k + 1)) {
             return false;
         } else {
             Material l = world.getType(i, j - 1, k);

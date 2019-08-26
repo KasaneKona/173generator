@@ -20,7 +20,5 @@ public interface ISimpleWorld {
 
 	BlockState getBlockState(int x, int y, int z);
 
-	void setType(int x, int y, int z, Material type, MaterialData data);
-
 	int getHighestBlockYAt(int x, int z);
 }

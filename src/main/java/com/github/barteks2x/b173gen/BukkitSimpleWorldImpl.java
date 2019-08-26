@@ -47,13 +47,6 @@ public class BukkitSimpleWorldImpl implements ISimpleWorld {
 		return world.getBlockAt(x, y, z).getState();
 	}
 
-	@Override public void setType(int x, int y, int z, Material type, MaterialData data) {
-		BlockState block = world.getBlockAt(x, y, z).getState();
-		block.setType(type);
-		block.setData(data);
-		block.update(true);
-	}
-
 	@Override public int getHighestBlockYAt(int x, int z) {
 		return world.getHighestBlockYAt(x, z);
 	}

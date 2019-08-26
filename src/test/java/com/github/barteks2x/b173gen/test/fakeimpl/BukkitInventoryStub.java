@@ -44,11 +44,6 @@ public class BukkitInventoryStub implements Inventory {
     }
 
     @Override
-    public String getName() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public ItemStack getItem(int index) {
         throw new UnsupportedOperationException();
     }
@@ -84,22 +79,12 @@ public class BukkitInventoryStub implements Inventory {
     }
 
     @Override
-    public boolean contains(int materialId) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public boolean contains(Material material) throws IllegalArgumentException {
         throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean contains(ItemStack item) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean contains(int materialId, int amount) {
         throw new UnsupportedOperationException();
     }
 
@@ -119,22 +104,12 @@ public class BukkitInventoryStub implements Inventory {
     }
 
     @Override
-    public HashMap<Integer, ? extends ItemStack> all(int materialId) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public HashMap<Integer, ? extends ItemStack> all(Material material) throws IllegalArgumentException {
         throw new UnsupportedOperationException();
     }
 
     @Override
     public HashMap<Integer, ? extends ItemStack> all(ItemStack item) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public int first(int materialId) {
         throw new UnsupportedOperationException();
     }
 
@@ -150,11 +125,6 @@ public class BukkitInventoryStub implements Inventory {
 
     @Override
     public int firstEmpty() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void remove(int materialId) {
         throw new UnsupportedOperationException();
     }
 
@@ -180,11 +150,6 @@ public class BukkitInventoryStub implements Inventory {
 
     @Override
     public List<HumanEntity> getViewers() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public String getTitle() {
         throw new UnsupportedOperationException();
     }
 

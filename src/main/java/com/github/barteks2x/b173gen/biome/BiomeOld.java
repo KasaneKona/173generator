@@ -9,11 +9,9 @@ import com.github.barteks2x.b173gen.oldgen.WorldGenGrassOld;
 import com.github.barteks2x.b173gen.oldgen.WorldGenTaiga1Old;
 import com.github.barteks2x.b173gen.oldgen.WorldGenTaiga2Old;
 import com.github.barteks2x.b173gen.oldgen.WorldGenTreeOld;
-import org.bukkit.GrassSpecies;
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
 import org.bukkit.configuration.Configuration;
-import org.bukkit.material.LongGrass;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -31,7 +29,8 @@ import static com.github.barteks2x.b173gen.biome.BetaBiome.SHRUBLAND;
 import static com.github.barteks2x.b173gen.biome.BetaBiome.SWAMPLAND;
 import static com.github.barteks2x.b173gen.biome.BetaBiome.TAIGA;
 import static com.github.barteks2x.b173gen.biome.BetaBiome.TUNDRA;
-import static org.bukkit.Material.LONG_GRASS;
+import static org.bukkit.Material.GRASS;
+import static org.bukkit.Material.FERN;
 
 public class BiomeOld {
 
@@ -114,9 +113,9 @@ public class BiomeOld {
 
     public static WorldGenerator173 getRandomGrassGenerator(Random rand, BetaBiome biome) {
         if (biome.equals(RAINFOREST) && rand.nextInt(3) != 0) {
-            return new WorldGenGrassOld(LONG_GRASS, new LongGrass(GrassSpecies.FERN_LIKE));
+            return new WorldGenGrassOld(FERN);
         } else {
-            return new WorldGenGrassOld(LONG_GRASS, new LongGrass(GrassSpecies.NORMAL));
+            return new WorldGenGrassOld(GRASS);
         }
     }
 
@@ -124,7 +123,7 @@ public class BiomeOld {
         if(biome.equals(DESERT)) {
             return Material.SAND;
         }
-        return Material.GRASS;
+        return Material.GRASS_BLOCK;
     }
 
     public static Material filler(BetaBiome biome) {

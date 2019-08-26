@@ -37,7 +37,7 @@ public class BetaBiome {
     }
 
     public Biome getBiome(WorldConfig cfg) {
-        if (cfg.noswamps && this.bukkitBiome == Biome.SWAMPLAND) {
+        if (cfg.noswamps && this.bukkitBiome == Biome.SWAMP) {
             return Biome.PLAINS;
         }
         return bukkitBiome;

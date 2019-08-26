@@ -1,12 +1,10 @@
-# No longer updated!
-This plugin is not maintained anymore. I am no longer working on bukkit and spigot plugins.
-If you need it updated, contact me directly, or update it yourself. 
-The current code in this state should continue working even with Minecraft 1.13 and up, until spigot breaks backwards compatibility again.
+# Updated for 1.14!
+As the original author (Barteks2x) is no longer maintaining this plugin, I've updated it to Spigot 1.14.4. In addition, I have brought Maven tests into a working state. The test code is far from clean, but everything works. Unfortunately I skipped 1.13, so the plugin is unavailable for that version unless I decide to backport it.
 
 ## Beta 1.7.3 world generator
 This plugin generates beta 1.7.3 terrain.
 
-[Bukkit dev page](http://dev.bukkit.org/server-mods/b173gen/)
+[Bukkit dev page](https://dev.bukkit.org/projects/b173gen/) (outdated)
 
 ### Usage
 
@@ -16,4 +14,4 @@ worlds:
      world_name:
           generator: 173generator
 ```
-To use it with a multi-world plugin, follow the instructions for that plugin.
+To use it with a multi-world plugin such as Multiverse, follow the instructions for that plugin.

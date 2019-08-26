@@ -4,8 +4,13 @@ import com.flowpowered.nbt.CompoundTag;
 import com.flowpowered.nbt.stream.NBTInputStream;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.zip.DataFormatException;
 import java.util.zip.Inflater;
+
+import org.bukkit.block.data.BlockData;
 
 public class RegionChunk {
     private static final int SECTOR_BYTES = 4096;
@@ -47,10 +52,33 @@ public class RegionChunk {
             builder.setPosition(regionChunkPosition);
             byte[] blockIdsLsb = (byte[]) level.getValue().get("Blocks").getValue();
             byte[] metadata = (byte[]) level.getValue().get("Data").getValue();
-            builder.setData(blockIdsLsb, metadata);
-
-            return builder.build();
-
+            int expectedBlocks = 16*16*128;
+            if(metadata.length != expectedBlocks/2) {
+            	throw new UnsupportedOperationException(
+            			"Block metadata in chunk "+regionChunkPosition.toString()+
+            			" does not match block IDs length!"+
+            			" Expected "+(expectedBlocks/2)+", got "+metadata.length);
+            }
+            if(blockIdsLsb.length != expectedBlocks) {
+            	throw new UnsupportedOperationException(
+            			"Block IDs in chunk "+regionChunkPosition.toString()+
+            			" has wrong length!"+
+            			" Expected "+expectedBlocks+", got "+blockIdsLsb.length);
+            }
+            // Lazily convert block ID and metadata to palette entries, then optimize afterwards
+            int[] paletteIds = new int[blockIdsLsb.length];
+            List<String> palette = Arrays.asList(new String[256*16]);
+            for(int i = 0; i < blockIdsLsb.length; i++) {
+            	int id = blockIdsLsb[i]&0xFF;
+            	int meta = (metadata[i>>1]>>((i&1)<<2)) & 0x0F; // Low nybble for even blocks, high nybble for odd blocks;
+            	int extendedId = BlockUtils.idMeta(id, meta);
+            	paletteIds[i] = extendedId;
+            	if(palette.get(extendedId) == null) {
+            		palette.set(extendedId, BlockUtils.getStateForOldId(id, meta));
+            	}
+            }
+            builder.setData(paletteIds, palette);
+            return ChunkData.optimizePalette(builder.build());
     }
 
     private byte[] decompress(byte[] compressedData) throws DataFormatException, IOException {

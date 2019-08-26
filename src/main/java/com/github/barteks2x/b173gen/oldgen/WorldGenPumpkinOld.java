@@ -4,6 +4,8 @@ import com.github.barteks2x.b173gen.ISimpleWorld;
 import com.github.barteks2x.b173gen.generator.WorldGenerator173;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.data.Directional;
 import org.bukkit.material.Pumpkin;
 
 import java.util.Random;
@@ -24,9 +26,12 @@ public class WorldGenPumpkinOld implements WorldGenerator173 {
             int z = k + random.nextInt(8) - random.nextInt(8);
 
             if(world.isEmpty(x, y, z)
-                    && world.getType(x, y - 1, z) == Material.GRASS
-                    && MinecraftMethods.Block_canPlace(Material.PUMPKIN, world, x, y, z)) {
-                world.setType(x, y, z, Material.PUMPKIN, new Pumpkin(randomFacing(random)));
+                    && world.getType(x, y - 1, z) == Material.GRASS_BLOCK
+                    && MinecraftMethods.Block_canPlace(Material.CARVED_PUMPKIN, world, x, y, z)) {
+            	BlockState state = world.getBlockState(x, y, z);
+            	state.setType(Material.CARVED_PUMPKIN);
+            	((Directional)state.getBlockData()).setFacing(randomFacing(random));
+            	state.update();
             }
         }
 

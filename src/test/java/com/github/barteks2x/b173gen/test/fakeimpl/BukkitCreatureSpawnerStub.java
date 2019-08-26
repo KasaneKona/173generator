@@ -6,9 +6,11 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.EntityType;
 import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.MetadataValue;
+import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.plugin.Plugin;
 
 import java.util.List;
@@ -17,18 +19,19 @@ class BukkitCreatureSpawnerStub implements CreatureSpawner {
     private EntityType creatureType;
 
     @Override
+    public void setSpawnedType(EntityType entityType) {
+    	this.creatureType = entityType;
+    }
+
+    @Override
     public void setCreatureTypeByName(String s) {
-        this.creatureType = EntityType.fromName(s);
+        //this.creatureType = EntityType.fromName(s);
+        throw new UnsupportedOperationException();
     }
 
     //UNIMPLEMENTED:
     @Override
     public EntityType getSpawnedType() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void setSpawnedType(EntityType entityType) {
         throw new UnsupportedOperationException();
     }
 
@@ -59,11 +62,6 @@ class BukkitCreatureSpawnerStub implements CreatureSpawner {
 
     @Override
     public Material getType() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public int getTypeId() {
         throw new UnsupportedOperationException();
     }
 
@@ -118,11 +116,6 @@ class BukkitCreatureSpawnerStub implements CreatureSpawner {
     }
 
     @Override
-    public boolean setTypeId(int i) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public boolean update() {
         throw new UnsupportedOperationException();
     }
@@ -171,4 +164,79 @@ class BukkitCreatureSpawnerStub implements CreatureSpawner {
     public void removeMetadata(String s, Plugin plugin) {
         throw new UnsupportedOperationException();
     }
+
+	@Override
+	public int getMaxNearbyEntities() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public int getMaxSpawnDelay() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public int getMinSpawnDelay() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public int getRequiredPlayerRange() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public int getSpawnCount() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public int getSpawnRange() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setMaxNearbyEntities(int arg0) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setMaxSpawnDelay(int arg0) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setMinSpawnDelay(int arg0) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setRequiredPlayerRange(int arg0) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setSpawnCount(int arg0) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setSpawnRange(int arg0) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public PersistentDataContainer getPersistentDataContainer() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public BlockData getBlockData() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setBlockData(BlockData data) {
+		throw new UnsupportedOperationException();
+	}
 }

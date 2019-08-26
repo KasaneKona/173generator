@@ -37,7 +37,6 @@ public class Generator extends JavaPlugin {
 	public void onLoad() {
 		this.log = this.getLogger();
 		VersionChecker.checkServerVersion(this);
-		MinecraftMethods.init();
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import com.github.barteks2x.b173gen.test.util.IChunkSource;
 import org.bukkit.*;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.*;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
@@ -12,14 +13,18 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Consumer;
+import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 public class BukkitWorldStub implements World {
 
@@ -80,17 +85,7 @@ public class BukkitWorldStub implements World {
     public Block getBlockAt(Location location) {
         throw new UnsupportedOperationException();
     }
-
-    @Override
-    public int getBlockTypeIdAt(int i, int i1, int i2) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public int getBlockTypeIdAt(Location location) {
-        throw new UnsupportedOperationException();
-    }
-
+    
     @Override
     public int getHighestBlockYAt(int i, int i1) {
         throw new UnsupportedOperationException();
@@ -175,17 +170,7 @@ public class BukkitWorldStub implements World {
     }
 
     @Override
-    public boolean unloadChunk(int i, int i1, boolean b, boolean b1) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public boolean unloadChunkRequest(int i, int i1) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean unloadChunkRequest(int i, int i1, boolean b) {
         throw new UnsupportedOperationException();
     }
 
@@ -211,11 +196,6 @@ public class BukkitWorldStub implements World {
 
     @Override
     public Arrow spawnArrow(Location location, Vector vector, float v, float v1) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public <T extends Arrow> T spawnArrow(Location location, Vector vector, float v, float v1, Class<T> aClass) {
         throw new UnsupportedOperationException();
     }
 
@@ -416,11 +396,6 @@ public class BukkitWorldStub implements World {
 
     @Override
     public FallingBlock spawnFallingBlock(Location location, Material material, byte b) throws IllegalArgumentException {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public FallingBlock spawnFallingBlock(Location location, int i, byte b) throws IllegalArgumentException {
         throw new UnsupportedOperationException();
     }
 
@@ -741,6 +716,162 @@ public class BukkitWorldStub implements World {
 
 	@Override
 	public FallingBlock spawnFallingBlock(Location arg0, MaterialData arg1) throws IllegalArgumentException {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean setSpawnLocation(Location arg0) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean isChunkGenerated(int x, int z) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean isChunkForceLoaded(int x, int z) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setChunkForceLoaded(int x, int z, boolean forced) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Collection<Chunk> getForceLoadedChunks() {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean addPluginChunkTicket(int x, int z, Plugin plugin) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean removePluginChunkTicket(int x, int z, Plugin plugin) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void removePluginChunkTickets(Plugin plugin) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Collection<Plugin> getPluginChunkTickets(int x, int z) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Map<Plugin, Collection<Chunk>> getPluginChunkTickets() {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public <T extends AbstractArrow> T spawnArrow(Location location, Vector direction, float speed, float spread,
+			Class<T> clazz) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Collection<Entity> getNearbyEntities(Location location, double x, double y, double z,
+			Predicate<Entity> filter) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Collection<Entity> getNearbyEntities(BoundingBox boundingBox) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Collection<Entity> getNearbyEntities(BoundingBox boundingBox, Predicate<Entity> filter) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public RayTraceResult rayTraceEntities(Location start, Vector direction, double maxDistance) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public RayTraceResult rayTraceEntities(Location start, Vector direction, double maxDistance, double raySize) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public RayTraceResult rayTraceEntities(Location start, Vector direction, double maxDistance,
+			Predicate<Entity> filter) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public RayTraceResult rayTraceEntities(Location start, Vector direction, double maxDistance, double raySize,
+			Predicate<Entity> filter) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public RayTraceResult rayTraceBlocks(Location start, Vector direction, double maxDistance) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public RayTraceResult rayTraceBlocks(Location start, Vector direction, double maxDistance,
+			FluidCollisionMode fluidCollisionMode) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public RayTraceResult rayTraceBlocks(Location start, Vector direction, double maxDistance,
+			FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public RayTraceResult rayTrace(Location start, Vector direction, double maxDistance,
+			FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks, double raySize,
+			Predicate<Entity> filter) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public FallingBlock spawnFallingBlock(Location location, BlockData data) throws IllegalArgumentException {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public <T> T getGameRuleValue(GameRule<T> rule) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public <T> T getGameRuleDefault(GameRule<T> rule) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public <T> boolean setGameRule(GameRule<T> rule, T newValue) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public <T> void spawnParticle(Particle particle, Location location, int count, double offsetX, double offsetY,
+			double offsetZ, double extra, T data, boolean force) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX,
+			double offsetY, double offsetZ, double extra, T data, boolean force) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Location locateNearestStructure(Location origin, StructureType structureType, int radius,
+			boolean findUnexplored) {
         throw new UnsupportedOperationException();
 	}
 }

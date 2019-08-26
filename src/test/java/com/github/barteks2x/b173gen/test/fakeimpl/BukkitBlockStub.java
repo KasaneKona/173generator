@@ -2,13 +2,18 @@ package com.github.barteks2x.b173gen.test.fakeimpl;
 
 import com.github.barteks2x.b173gen.test.util.BlockUtils;
 import org.bukkit.Chunk;
+import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.*;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.util.BoundingBox;
+import org.bukkit.util.RayTraceResult;
+import org.bukkit.util.Vector;
 
 import java.util.Collection;
 import java.util.List;
@@ -44,7 +49,7 @@ public class BukkitBlockStub implements Block {
 
     @Override
     public boolean isLiquid() {
-        return type == Material.WATER || type == Material.STATIONARY_WATER || type == Material.LAVA || type == Material.STATIONARY_LAVA;
+        return type == Material.WATER || type == Material.LAVA;
     }
 
     //approximate value, heightmap only. Causes some differences
@@ -72,7 +77,7 @@ public class BukkitBlockStub implements Block {
     public BlockState getState() {
         //TODO: Add more cases as needed
         switch(type) {
-            case MOB_SPAWNER:
+            case SPAWNER:
                 return new BukkitCreatureSpawnerStub();
             case CHEST:
                 return new BukkitChestStub();
@@ -103,11 +108,6 @@ public class BukkitBlockStub implements Block {
 
     @Override
     public Block getRelative(BlockFace blockFace, int i) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public int getTypeId() {
         throw new UnsupportedOperationException();
     }
 
@@ -157,32 +157,7 @@ public class BukkitBlockStub implements Block {
     }
 
     @Override
-    public void setData(byte b) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void setData(byte b, boolean b1) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public void setType(Material material, boolean b) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean setTypeId(int i) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean setTypeId(int i, boolean b) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean setTypeIdAndData(int i, byte b, boolean b1) {
         throw new UnsupportedOperationException();
     }
 
@@ -285,5 +260,36 @@ public class BukkitBlockStub implements Block {
     public void removeMetadata(String s, Plugin plugin) {
         throw new UnsupportedOperationException();
     }
+
+	@Override
+	public BlockData getBlockData() {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setBlockData(BlockData data) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setBlockData(BlockData data, boolean applyPhysics) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public boolean isPassable() {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public RayTraceResult rayTrace(Location start, Vector direction, double maxDistance,
+			FluidCollisionMode fluidCollisionMode) {
+        throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public BoundingBox getBoundingBox() {
+        throw new UnsupportedOperationException();
+	}
 
 }
