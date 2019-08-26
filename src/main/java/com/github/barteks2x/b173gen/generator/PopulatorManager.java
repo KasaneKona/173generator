@@ -140,7 +140,7 @@ public class PopulatorManager {
         this.primaryState = PopulatorState.forChunk(this.world, this.wcm, chunkX, chunkZ);
         this.allStates.add(primaryState);
         if (allStates.size() > 1) {
-            Generator.logger().warning("Already populating a chunk. Recursive chunk generation may cause issues.");
+            Generator.logger().warning("Already populating chunk ("+chunkX+", "+chunkZ+"). Recursive generation may cause issues.");
         }
     }
 

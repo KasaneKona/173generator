@@ -4,6 +4,8 @@ import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.generator.BlockPopulator;
 
+import com.github.barteks2x.b173gen.Generator;
+
 import java.util.Random;
 
 public class PopulatorProxy extends BlockPopulator {
@@ -27,6 +29,7 @@ public class PopulatorProxy extends BlockPopulator {
         }
         lastKnownX = chunk.getX();
         lastKnownZ = chunk.getZ();
+        Generator.logger().warning("Populating with "+name);
         populator.populate(stateManager.getWorld(), stateManager.getStateFor(chunk.getX(), chunk.getZ()));
     }
 

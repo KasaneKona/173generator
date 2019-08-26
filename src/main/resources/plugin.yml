@@ -1,5 +1,6 @@
 name: ${name}
 version: ${describe}
+api-version: ${spigotApiVer}
 description: ${description}
 authors: [Barteks2x]
 main: ${groupId}.${artifactId}.Generator

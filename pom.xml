@@ -10,7 +10,8 @@
         <gitdescribe-prefix></gitdescribe-prefix>
         <gitdescribe-suffix></gitdescribe-suffix>
         <protocolLibVersion>4.4.0</protocolLibVersion>
-    	<describe>${version}</describe>
+    	<describe>${project.version}</describe>
+    	<spigotApiVer>1.14</spigotApiVer>
     </properties>
     <dependencies>
         <dependency>

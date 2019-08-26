@@ -9,6 +9,7 @@ import org.bukkit.Material;
 import java.util.Random;
 
 import static org.bukkit.Material.ICE;
+import static org.bukkit.Material.GRASS_BLOCK;
 import static org.bukkit.Material.SNOW;
 
 public class SnowPopulator implements IPopulator {
@@ -26,6 +27,9 @@ public class SnowPopulator implements IPopulator {
                         world.isEmpty(blockX, blockY, blockZ) &&
                         blockBelow.isSolid() && blockBelow != ICE) {
                     world.setType(blockX, blockY, blockZ, SNOW);
+                    if(blockBelow == GRASS_BLOCK) {
+                    	// Set grass to snowy state
+                    }
                 }
             }
         }
