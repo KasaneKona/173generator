@@ -1,4 +1,6 @@
-# Updated for 1.14!
+# This code is horribly unstable! Do not use it in its current state! Issues will be resolved shortly.
+
+## Updated for 1.14!
 As the original author (Barteks2x) is no longer maintaining this plugin, I've updated it to Spigot 1.14.4. In addition, I have brought Maven tests into a working state. The test code is far from clean, but everything works. Unfortunately I skipped 1.13, so the plugin is unavailable for that version unless I decide to backport it.
 
 ## Beta 1.7.3 world generator
