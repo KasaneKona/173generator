@@ -12,8 +12,10 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
+import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -43,7 +45,7 @@ public class ChunkProviderGenerate extends ChunkGenerator {
     private double noise7[];
 
     public WorldChunkManagerOld wcm;
-    private List<org.bukkit.generator.BlockPopulator> populatorList;
+    private List<BlockPopulator> populatorList;
     private World world;
     private final WorldConfig config;
     private PopulatorManager populatorManager;
@@ -56,12 +58,11 @@ public class ChunkProviderGenerate extends ChunkGenerator {
     }
 
     @Override
-    public List<org.bukkit.generator.BlockPopulator> getDefaultPopulators(org.bukkit.World w) {
+    public List<BlockPopulator> getDefaultPopulators(org.bukkit.World w) {
         plugin.initWorld(w);
-        return Collections.unmodifiableList(populatorList);
+        return new ArrayList<BlockPopulator>();//Collections.unmodifiableList(populatorList);
     }
 
-    @SuppressWarnings("unchecked")
     public void init(World world, WorldChunkManagerOld wcm) {
         this.world = world;
         this.wcm = wcm;
@@ -111,7 +112,8 @@ public class ChunkProviderGenerate extends ChunkGenerator {
     }
 
     public void generateTerrain(int x, int z, ChunkData terrain) {
-        double temperatures[] = this.wcm.temperatures;
+        //double temperatures[] = this.wcm.temperatures;
+        double temperatures[] = wcm.getTemperatures(null, x * 16, z * 16, 16, 16);
         byte byte0 = 4;
         byte oceanHeight = 64;
         int k = byte0 + 1;
@@ -290,8 +292,8 @@ public class ChunkProviderGenerate extends ChunkGenerator {
         }
         double d0 = 684.412D;
         double d1 = 684.412D;
-        double temp[] = this.wcm.temperatures;
-        double rain[] = this.wcm.rain;
+        double temp[] = wcm.getTemperatures(null, xPos * 16, zPos * 16, 16, 16);
+        double rain[] = this.wcm.rain; // TODO - avoid array re-use here
         noise6 = noiseGen6.generateNoiseArray(noise6, xPos, zPos, xSize, zSize, 1.121D, 1.121D, 0.5D);
         noise7 = noiseGen7.generateNoiseArray(noise7, xPos, zPos, xSize, zSize, 200D, 200D, 0.5D);
         noise3 = noiseGen3.generateNoiseArray(noise3, xPos, yPos, zPos, xSize, ySize, zSize,

@@ -25,16 +25,18 @@ public class WorldChunkManagerOld {
         return getBiomeData(i, j, 1, 1)[0];
     }
 
-    public double[] getTemperatures(double[] ad, int i, int j, int k, int l) {
-        if(ad == null || ad.length < k * l) {
-            ad = new double[k * l];
+    public double[] getTemperatures(double[] ad, int x, int z, int xSize, int zSize) {
+        if(ad == null || ad.length < xSize * zSize) {
+            ad = new double[xSize * zSize];
         }
 
-        ad = noise1.generateNoiseArray(ad, i, j, k, l, 0.025D, 0.025D, 0.25D);
-        c = noise3.generateNoiseArray(c, i, j, k, l, 0.25D, 0.25D, 0.58823529411764708D);
+        ad = noise1.generateNoiseArray(ad, x, z, xSize, zSize, 0.025D, 0.025D, 0.25D);
+        // Don't re-use arrays - world gen is multi threaded now!
+        c = noise3.generateNoiseArray(c, x, z, xSize, zSize, 0.25D, 0.25D, 0.58823529411764708D);
+        //double[] c = noise3.generateNoiseArray(null, x, z, xSize, zSize, 0.25D, 0.25D, 0.58823529411764708D);
         int i1 = 0;
-        for(int j1 = 0; j1 < k; j1++) {
-            for(int k1 = 0; k1 < l; k1++) {
+        for(int j1 = 0; j1 < xSize; j1++) {
+            for(int k1 = 0; k1 < zSize; k1++) {
                 double d = c[i1] * 1.1000000000000001D + 0.5D;
                 double d1 = 0.01D;
                 double d2 = 1.0D - d1;
@@ -51,7 +53,7 @@ public class WorldChunkManagerOld {
             }
 
         }
-        this.temperatures = ad;
+        //this.temperatures = ad;
         return ad;
     }
 
@@ -59,9 +61,13 @@ public class WorldChunkManagerOld {
         if(biomes == null || biomes.length < xSize * zSize) {
             biomes = new BetaBiome[xSize * zSize];
         }
+        // Don't re-use arrays - world gen is multi threaded now!
         temperatures = noise1.generateNoiseArray(temperatures, x, z, xSize, xSize, 0.02500000037252903D, 0.02500000037252903D, 0.25D);
         rain = noise2.generateNoiseArray(rain, x, z, xSize, xSize, 0.05000000074505806D, 0.05000000074505806D, 0.33333333333333331D);
         c = noise3.generateNoiseArray(c, x, z, xSize, xSize, 0.25D, 0.25D, 0.58823529411764708D);
+        //double[] temperatures = noise1.generateNoiseArray(null, x, z, xSize, xSize, 0.02500000037252903D, 0.02500000037252903D, 0.25D);
+        //double[] rain = noise2.generateNoiseArray(null, x, z, xSize, xSize, 0.05000000074505806D, 0.05000000074505806D, 0.33333333333333331D);
+        //double[] c = noise3.generateNoiseArray(null, x, z, xSize, xSize, 0.25D, 0.25D, 0.58823529411764708D);
         int index = 0;
         for(int blockX = 0; blockX < xSize; blockX++) {
             for(int blockZ = 0; blockZ < zSize; blockZ++) {
@@ -99,9 +105,13 @@ public class WorldChunkManagerOld {
         if(biomes == null || biomes.length < xSize * zSize) {
             biomes = new BetaBiome[xSize * zSize];
         }
+        // Don't re-use arrays - world gen is multi threaded now!
         temperatures = noise1.generateNoiseArray(temperatures, x, z, xSize, xSize, 0.025D, 0.025D, 0.25D);
         rain = noise2.generateNoiseArray(rain, x, z, xSize, xSize, 0.05D, 0.05D, 1D / 3D);
-        c = noise3.generateNoiseArray(c, x, z, xSize, xSize, 0.25D, 0.25D, 0.58823529411764708D);
+        //c = noise3.generateNoiseArray(c, x, z, xSize, xSize, 0.25D, 0.25D, 0.58823529411764708D);
+        //double[] temperatures = noise1.generateNoiseArray(null, x, z, xSize, xSize, 0.025D, 0.025D, 0.25D);
+        //double[] rain = noise2.generateNoiseArray(null, x, z, xSize, xSize, 0.05D, 0.05D, 1D / 3D);
+        double[] c = noise3.generateNoiseArray(null, x, z, xSize, xSize, 0.25D, 0.25D, 0.58823529411764708D);
         int index = 0;
         for(int blockX = 0; blockX < xSize; blockX++) {
             for(int blockZ = 0; blockZ < zSize; blockZ++) {
@@ -136,7 +146,8 @@ public class WorldChunkManagerOld {
     }
 
     private BetaBiome[] getBiomeData(int i, int j, int k, int l) {
-        this.dx = getBiomes(this.dx, i, j, k, l);
-        return this.dx;
+        //this.dx = getBiomes(this.dx, i, j, k, l);
+        //return this.dx;
+    	return getBiomes(null, i, j, k, l);
     }
 }

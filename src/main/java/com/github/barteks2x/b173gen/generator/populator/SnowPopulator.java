@@ -1,5 +1,6 @@
 package com.github.barteks2x.b173gen.generator.populator;
 
+import com.github.barteks2x.b173gen.Generator;
 import com.github.barteks2x.b173gen.ISimpleWorld;
 import com.github.barteks2x.b173gen.generator.IPopulator;
 import com.github.barteks2x.b173gen.generator.PopulatorState;
@@ -14,7 +15,6 @@ import static org.bukkit.Material.SNOW;
 
 public class SnowPopulator implements IPopulator {
     private static void generateSnow(ISimpleWorld world, Random rand, double[] temperatures, int chunkStartX, int chunkStartZ) {
-
         for (int blockX = chunkStartX; blockX < chunkStartX + 16; blockX++) {
             for (int blockZ = chunkStartZ; blockZ < chunkStartZ + 16; blockZ++) {
                 int localX = blockX - chunkStartX;
@@ -28,7 +28,7 @@ public class SnowPopulator implements IPopulator {
                         blockBelow.isSolid() && blockBelow != ICE) {
                     world.setType(blockX, blockY, blockZ, SNOW);
                     if(blockBelow == GRASS_BLOCK) {
-                    	// Set grass to snowy state
+                    	// TODO - Set grass to snowy state
                     }
                 }
             }

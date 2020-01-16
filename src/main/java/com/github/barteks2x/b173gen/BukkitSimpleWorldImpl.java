@@ -15,8 +15,8 @@ public class BukkitSimpleWorldImpl implements ISimpleWorld {
 	}
 
 	@Override public Material getType(int x, int y, int z) {
-		if(!world.isChunkLoaded(x>>4, z>>4)) {
-			//Generator.logger().warning("Getting type in unloaded chunk!");
+		if(!chunkReady(x, z)) {
+			//Generator.logger().warning("Getting type in unready chunk!");
 			// TODO - Check if this hack affects results
 			return Material.AIR; // Hack to prevent recursive population
 		}
@@ -24,26 +24,26 @@ public class BukkitSimpleWorldImpl implements ISimpleWorld {
 	}
 
 	@Override public void setType(int x, int y, int z, Material material) {
-		if(!world.isChunkLoaded(x>>4, z>>4)) {
-			//Generator.logger().warning("Setting type in unloaded chunk!");
+		if(!chunkReady(x, z)) {
+			//Generator.logger().warning("Setting type in unready chunk!");
 			// TODO - Check if this hack affects results
 			return; // Hack to prevent recursive population
 		}
 	    Block block = world.getBlockAt(x, y, z);
-	    block.setType(material, false); // No block updates
+	    block.setType(material, false); // No block updates to prevent recursive population
 	}
 
 	@Override public boolean isEmpty(int x, int y, int z) {
-		if(!world.isChunkLoaded(x>>4, z>>4)) {
-			//Generator.logger().warning("Checking empty in unloaded chunk!");
+		if(!chunkReady(x, z)) {
+			//Generator.logger().warning("Checking empty in unready chunk!");
 			return false; // TODO - test if should be true
 		}
 		return world.getBlockAt(x, y, z).isEmpty();
 	}
 
 	@Override public int getBlockLight(int x, int y, int z) {
-		if(!world.isChunkLoaded(x>>4, z>>4)) {
-			//Generator.logger().warning("Getting block light in unloaded chunk!");
+		if(!chunkReady(x, z)) {
+			//Generator.logger().warning("Getting block light in unready chunk!");
 			return 0;
 		}
 		if(y < 0 || y > 255) {
@@ -53,8 +53,8 @@ public class BukkitSimpleWorldImpl implements ISimpleWorld {
 	}
 
 	@Override public int getSkyLight(int x, int y, int z) {
-		if(!world.isChunkLoaded(x>>4, z>>4)) {
-			//Generator.logger().warning("Getting sky light in unloaded chunk!");
+		if(!chunkReady(x, z)) {
+			//Generator.logger().warning("Getting sky light in unready chunk!");
 			return 15;
 		}
 		if(y < 0) {
@@ -67,18 +67,28 @@ public class BukkitSimpleWorldImpl implements ISimpleWorld {
 	}
 
 	@Override public BlockState getBlockState(int x, int y, int z) {
-		if(!world.isChunkLoaded(x>>4, z>>4)) {
-			//Generator.logger().warning("Getting block state in unloaded chunk!");
+		if(!chunkReady(x, z)) {
+			//Generator.logger().warning("Getting block state in unready chunk!");
 			return null; // Will this cause problems?
 		}
 		return world.getBlockAt(x, y, z).getState();
 	}
 
 	@Override public int getHighestBlockYAt(int x, int z) {
-		if(!world.isChunkLoaded(x>>4, z>>4)) {
-			//Generator.logger().warning("Getting height map in unloaded chunk!");
+		if(!chunkReady(x, z)) {
+			//Generator.logger().warning("Getting height map in unready chunk!");
 			return 0;
 		}
 		return world.getHighestBlockYAt(x, z);
+	}
+	
+	private boolean chunkReady(int blockX, int blockZ) {
+		int chunkX = blockX >> 4;
+		int chunkZ = blockZ >> 4;
+		// Check if the chunk exists (if it does, ensure it's loaded)
+		// but don't trigger recursive generation
+		if(world.isChunkLoaded(chunkX, chunkZ)) return true;
+		//return world.loadChunk(chunkX, chunkZ, false);
+		return world.isChunkGenerated(chunkX, chunkZ);
 	}
 }

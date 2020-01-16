@@ -29,7 +29,7 @@ public class PopulatorProxy extends BlockPopulator {
         }
         lastKnownX = chunk.getX();
         lastKnownZ = chunk.getZ();
-        Generator.logger().warning("Populating with "+name);
+        //Generator.logger().warning("Populating with "+name);
         populator.populate(stateManager.getWorld(), stateManager.getStateFor(chunk.getX(), chunk.getZ()));
     }
 
